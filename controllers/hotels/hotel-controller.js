@@ -13,7 +13,7 @@ const createHotelAccount = async(req, res)=>{
         description, noOfroom, email, password, phoneNumber,businessId
     } = req.body;
 
-    console.log(req.file)
+   console.log(req)
     const errors = validationResult(req);
 
     try{

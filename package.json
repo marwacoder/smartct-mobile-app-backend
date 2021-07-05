@@ -23,6 +23,7 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "csurf": "^1.11.0",
+    "datalize": "^0.3.4",
     "dotenv": "^8.2.0",
     "elliptic": "^6.5.4",
     "emailjs-com": "^2.6.4",
@@ -48,7 +49,8 @@
     "sequelize": "^6.5.0",
     "sequelize-cli": "^6.2.0",
     "shortid": "^2.2.16",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "validatorjs": "^3.22.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

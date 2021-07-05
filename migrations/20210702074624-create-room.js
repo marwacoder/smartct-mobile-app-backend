@@ -7,7 +7,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
-      roomsName: {
+      roomName: {
         type: Sequelize.STRING
       },
       roomNumber: {

@@ -38,18 +38,19 @@ const NOT_AUTH =()=>{
     }
 }
 
- const CONFLICT =(msg)=>{
+ const CONFLICT =(msg, params)=>{
     return {
-        msg: `Business with this email address already exist`,
+        msg,
         statusCode: 409,
-        params: msg
+        params
     }
 }
 
+
  const FIELD_VALIDATION =(errors)=>{
     return {
-        msg: errors.array()[0].msg,
-        param: errors.array()[0].param,
+        msg: Object.values(errors.errors)[0],
+        param: Object.keys(errors.errors)[0],
         statusCode: 403
     }
 }

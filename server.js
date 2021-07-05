@@ -19,15 +19,16 @@ const models = require('./models/');
 
 const businessAccountRoute = require('./routes/businessAccount');
 const hotelRoute = require('./routes/hotel/hotel');
-// const roomRoute = require('./routes/hotel/room');
+const roomRoute = require('./routes/hotel/room');
 
 const app = express();
 app.use(cors())
 app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
+
 app.use('./uploads/',express.static('uploads'));
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -39,7 +40,7 @@ app.use(session({
 
 app.use('/kaduna', businessAccountRoute);
 app.use('/kaduna', hotelRoute);
-// app.use('/kaduna', roomRoute);
+app.use('/kaduna', roomRoute);
 //use route
 
 

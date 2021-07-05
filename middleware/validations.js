@@ -1,5 +1,7 @@
 const { body, param,} = require('express-validator');
-
+const Validator = require('validatorjs')
+const datalize = require('datalize');
+const field = datalize.field;
 
 const validate = (method) => {
     switch (method) {
@@ -73,9 +75,22 @@ const validate = (method) => {
         case 'hotelId' :{
             return param('hotelId','must not be empty hotelId').notEmpty()
         }
+        case 'roomId' :{
+            return param('roomId','must not be empty roomId').notEmpty()
+        }
         
     }
     
 }
 
-module.exports = { validate };
+
+const validator = (body, rules, customMessages, cb)=>{
+    
+    const validation = new Validator(body, rules, customMessages);
+    validation.passes(()=> cb(null, true));
+    validation.fails(()=> cb(validation.errors, false));
+
+    }
+
+
+module.exports = { validate, validator}; 

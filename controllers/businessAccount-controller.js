@@ -19,10 +19,11 @@ const createBusinessAccount = async(req, res)=>{
         email, phoneNumber, description,
         image, password, confirmPassword
     } = req.body;
-
+    console.log(req.body)
 
     const id = getBusinessId()
     const errors = validationResult(req);
+    console.log(req)
 
     try{
         const findBusinessByEmail = await Business.findAll({where:{email}});

@@ -10,6 +10,7 @@ const {validator} = require('../../middleware/validations')
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination(req, file, callback){
+
         callback(null, '../../uploads/hotels/');
     },
     filename(req, file, callback){

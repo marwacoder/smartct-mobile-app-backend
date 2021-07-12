@@ -10,6 +10,7 @@ const multer = require('multer');
 const storage = multer.diskStorage({
     destination(req, file, callback){
         callback(null, '../../uploads/hotels/rooms');
+        
     },
     filename(req, file, callback){
         callback(null, new Date().toISOString().replace(/:/g,'-') + file.originalname);
@@ -58,15 +59,17 @@ const createRoom = async(req, res)=>{
          
         try {
 
-            upload(req, res, function (err) {
-                 const obj = req.body = JSON.stringify(req.body)
-                const cookies = req.cookies = JSON.stringify(req.cookies)
-                req.cookies = JSON.parse(cookies)
-                 req.body = JSON.parse(obj)
+            upload(req, res,  async(err)=> {
+                //  const obj = req.body = JSON.stringify(req.body)
+                // const cookies = req.cookies = JSON.stringify(req.cookies)
+                // req.cookies = JSON.parse(cookies)
+                //  req.body = JSON.parse(obj)
+    
+                console.log(req.body)
                 
                 if (err instanceof multer.MulterError) {
                   // A Multer error occurred when uploading.
-                  return res.status(500).json({
+                  return await res.status(500).json({
                       error:{
                           msg:'Server Error',
                           statusCode: 500
@@ -74,7 +77,7 @@ const createRoom = async(req, res)=>{
                   })
                 } else if (err) {
                   // An unknown error occurred when uploading.
-                  return res.status(500).json({
+                  return await res.status(500).json({
                     error:{
                         msg:'Error occured while uploading file',
                         statusCode: 500
@@ -82,7 +85,7 @@ const createRoom = async(req, res)=>{
                 })
                 }else if (!req.file) {
                     // An unknown error occurred when uploading.
-                    return res.status(422).json({
+                    return await res.status(422).json({
                       error:{
                           msg:'Please upload photo',
                           statusCode: 422
@@ -125,10 +128,6 @@ const createRoom = async(req, res)=>{
                 // Everything went fine.
               })
             
-        
-
-
-        
     }
     catch(error){
         return res.status(500).json(SERVER_ERROR(error))
